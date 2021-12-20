@@ -1,37 +1,20 @@
 use rust_base58::{ToBase58, FromBase58};
-use hex;
 use solana_sdk::bs58;
+use hex;
 
 fn main() {
-    let address = String::from("9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb");
-    let address1 = String::from("25zBh6DbBPQmQUGeLMaEfNAASfvxrm1GvVg3bfTZ6NkG");
-    //let num = String::from("1112j");
+    let address1 = String::from("9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb");
+    let address2 = String::from("25zBh6DbBPQmQUGeLMaEfNAASfvxrm1GvVg3bfTZ6NkG");
 
-    //let x:i32 = 100;
-    //let x_bytes = x.to_be_bytes();
+    let bytes1 = address1.from_base58().unwrap();
+    let bytes2 = address2.from_base58().unwrap();
 
-    let hash = address.from_base58().unwrap();
-    let hash1 = address1.from_base58().unwrap();
-
-
-    // println!("{}",hex::encode(&hash));
-    println!("{:02x?}", &hash);
-    println!("{:02x?}", &hash1);
-    //println!("{:02x?}", &num);
-
+    println!("9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb\n{:02x?}", &bytes1);
+    println!("25zBh6DbBPQmQUGeLMaEfNAASfvxrm1GvVg3bfTZ6NkG\n{:02x?}", &bytes2);
 
     let decoded = bs58::decode("9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb").into_vec().unwrap();
     let encoded = bs58::encode(&decoded).into_string();
 
-    println!("{:02x?}", &decoded);
-    println!("{}", &encoded);//9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb
-
-
-    // let input = "090A0B0C";
-
-    // let decoded = hex::decode(input).expect("Decoding failed");
-
-    // println!("{:?}", decoded);
-
-    //let original_x = i32::from_be_bytes(x_bytes);
+    println!("Base58 decoded 9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb\n{:02x?}", &decoded);
+    println!("Base58 encoded 9axNqFRy75YxUfebcFNdZfw5a2LGEMyNfWcnTG6Ekqgb\n{}", &encoded);
 }
